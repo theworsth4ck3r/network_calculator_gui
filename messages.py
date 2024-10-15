@@ -8,3 +8,9 @@ __ERROR_MESSAGES = {
     'INVALID_IP_ADDRESS': 'Nieprawidłowy adres IP',
     'IP_VALIDATION_ERROR': 'Błąd podczas walidacji adresu IP'
 }
+
+def getMessage(key):
+    return __MESSAGES[key]
+
+def getErrorMessage(key):
+    return __ERROR_MESSAGES[key]

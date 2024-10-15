@@ -8,7 +8,7 @@ def calcNetworkAddress(ipAddress, subnetMask):
 	for x in range(0, 32):
 		network_address_bin += str(int(ip_address_bin[x]) * int(subnet_mask_bin[x]))
 
-	return ipToDec(network_address_bin)
+	return binIpToDec(network_address_bin)
 
 
 def calcBroadcastAddress(networkAddress, subnetMask):
@@ -22,7 +22,7 @@ def calcBroadcastAddress(networkAddress, subnetMask):
 			subnetmask_reversed_bin += '1'
 	
 
-	subnetmask_reversed_dec = ipToDec(subnetmask_reversed_bin)
+	subnetmask_reversed_dec = binIpToDec(subnetmask_reversed_bin)
 
 	subnetmask_reversed_dec_arr = subnetmask_reversed_dec.split('.')
 	network_address_arr = networkAddress.split('.')

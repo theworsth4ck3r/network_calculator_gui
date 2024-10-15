@@ -1,6 +1,6 @@
 from calc_functions import *
 from helpers import validateIpAddress
-from messages import __MESSAGES
+from messages import getMessage
 
 class ConsoleApplication:
 
@@ -10,10 +10,10 @@ class ConsoleApplication:
 
 
     def getAndValidateIpAddressAndSubnetMask(self):
-        __IP_ADDRESS = (input(__MESSAGES['PASS_IP_ADDRESS'])).strip()
+        __IP_ADDRESS = (input(getMessage('PASS_IP_ADDRESS'))).strip()
         self.handleValidationError(validateIpAddress(__IP_ADDRESS))
 
-        __SUBNET_MASK_ADDRESS = (input(__MESSAGES['PASS_SUBNET_MASK_IP_ADDRESS'])).strip()
+        __SUBNET_MASK_ADDRESS = (input(getMessage('PASS_SUBNET_MASK_IP_ADDRESS'))).strip()
         self.handleValidationError(validateIpAddress(__SUBNET_MASK_ADDRESS))
         
         return __IP_ADDRESS, __SUBNET_MASK_ADDRESS

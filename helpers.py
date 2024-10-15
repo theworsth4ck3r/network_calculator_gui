@@ -1,6 +1,6 @@
 import sys
 import getopt
-from messages import __ERROR_MESSAGES
+from messages import getErrorMessage
 
 
 def isConsoleApplication():
@@ -19,17 +19,17 @@ def isConsoleApplication():
 def validateIpAddress(ipAddress):
     octs = ipAddress.split(".")
     if len(octs) != 4:
-        return __ERROR_MESSAGES['INVALID_IP_ADDRESS']
+        return getErrorMessage('INVALID_IP_ADDRESS')
         
     for singleOct in octs:
         try:
             intSingleOct = int(singleOct)
             if intSingleOct < 0 or intSingleOct > 255:
-                return __ERROR_MESSAGES['INVALID_IP_ADDRESS']
+                return getErrorMessage('INVALID_IP_ADDRESS')
         except ValueError:
-            return __ERROR_MESSAGES['INVALID_IP_ADDRESS']
+            return getErrorMessage('INVALID_IP_ADDRESS')
         except Exception:
-            return __ERROR_MESSAGES['IP_VALIDATION_ERROR']   
+            return getErrorMessage('IP_VALIDATION_ERROR')   
     
 
 # Crates given amount of bits
@@ -43,8 +43,9 @@ def getBits(amountBitsToCreate):
 	return arr[::-1]
 
 
-# Takes IP as a string and converts it to decimal number
-def ipToDec(ipAddress):
+# Takes IP as a binary number and converts it to decimal
+# Example: 11000000101010000000000100001010 -> 192.168.1.10
+def binIpToDec(ipAddress):
 	ipBinArr = []
 	bits = getBits(8)
 
@@ -68,6 +69,7 @@ def ipToDec(ipAddress):
 
 
 # Takes ip address as a string and converts it to binary number
+# Example 192.168.1.10 -> 11000000101010000000000100001010
 def ipToBin(ipAddress):
 	octs = ipAddress.split('.')
 
