@@ -1,8 +1,8 @@
 from helpers import *
 
 def calcNetworkAddress(ipAddress, subnetMask):
-	ip_address_bin = ipToBin(ipAddress)
-	subnet_mask_bin = ipToBin(subnetMask)
+	ip_address_bin = decIpToBin(ipAddress)
+	subnet_mask_bin = decIpToBin(subnetMask)
 	network_address_bin = ''
 
 	for x in range(0, 32):
@@ -12,7 +12,7 @@ def calcNetworkAddress(ipAddress, subnetMask):
 
 
 def calcBroadcastAddress(networkAddress, subnetMask):
-	subnetmask_bin = ipToBin(subnetMask)
+	subnetmask_bin = decIpToBin(subnetMask)
 	subnetmask_reversed_bin = ''
 
 	for x in range(0, len(subnetmask_bin)):
@@ -38,7 +38,7 @@ def calcBroadcastAddress(networkAddress, subnetMask):
 
 def getMaximumHostsAmount(subnetMask):    
 	subnetmask_short = 0
-	subnetmask_bin = ipToBin(subnetMask)
+	subnetmask_bin = decIpToBin(subnetMask)
 
 	for x in range(0, len(subnetmask_bin)):
 		if int(subnetmask_bin[x]) == 1:

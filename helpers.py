@@ -70,7 +70,7 @@ def binIpToDec(ipAddress):
 
 # Takes ip address as a string and converts it to binary number
 # Example 192.168.1.10 -> 11000000101010000000000100001010
-def ipToBin(ipAddress):
+def decIpToBin(ipAddress):
 	octs = ipAddress.split('.')
 
 	bits = getBits(8)
