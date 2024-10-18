@@ -22,13 +22,13 @@ class ConsoleApplication:
     def calculateAndPrintResult(self):
 
         print('''
-------------------------------------
-Network address      %s
-Broadcast address    %s
-Maximum hosts        %d
-First host IP        %s
-Last host IP         %s
-------------------------------------
+------------------------------------------------------
+Adres sieci                            %s
+Adres rozgłoszeniowy                   %s
+Maksymalna liczba urządzeń             %d
+Adres IP pierwszego urządzenia         %s
+Adres IP ostatniego urządzenia         %s
+------------------------------------------------------
         ''' % (calculateAll(self.ipAddress, self.subnetMask)))
         
     
