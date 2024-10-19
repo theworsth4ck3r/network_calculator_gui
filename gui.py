@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+from messages import getMessage
 
 class GUIApplication:
 
@@ -15,6 +15,7 @@ class GUIApplication:
 
     def createAndConfigureRootWindow(self):
         self.rootWindow = tk.Tk()
+        self.rootWindow.title(getMessage('APP_TITLE'))
         self.rootWindow.geometry('800x500')
         self.rootWindow.grid_columnconfigure(0, weight=1)
         
@@ -25,13 +26,13 @@ class GUIApplication:
         self.mainFrame.columnconfigure(1, weight=1)
         
     def buildMainFrameLayout(self):
-        ipAddressLabel = tk.Label(self.mainFrame, text="IP Address", font=('Arial', 14))
+        ipAddressLabel = tk.Label(self.mainFrame, text=getMessage('PASS_IP_ADDRESS'), font=('Arial', 14))
         ipAddressLabel.grid(row=0, column=0, padx=10)
 
         self.ipAddressInput = tk.Entry(self.mainFrame)
         self.ipAddressInput.grid(row=1, column=0, sticky=tk.W + tk.E, padx=10)
 
-        subnetMaskLabel = tk.Label(self.mainFrame, text="Subnet Mask", font=('Arial', 14))
+        subnetMaskLabel = tk.Label(self.mainFrame, text=getMessage('PASS_SUBNET_MASK_IP_ADDRESS'), font=('Arial', 14))
         subnetMaskLabel.grid(row=0, column=1, padx=10)
 
         self.subnetMaskInput = tk.Entry(self.mainFrame)
@@ -40,7 +41,7 @@ class GUIApplication:
         self.mainFrame.pack(fill='x', padx=20, pady=20)
         
     def createAndConfigureCalculateButton(self):
-        self.calculateButton = tk.Button(self.rootWindow, text="Calculate", command=self.handleCalculateButtonClick)
+        self.calculateButton = tk.Button(self.rootWindow, text=getMessage('CALCULATE'), command=self.handleCalculateButtonClick)
         self.calculateButton.pack()
         
     def createAndConfigureResultEntry(self):

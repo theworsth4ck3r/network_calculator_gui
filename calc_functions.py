@@ -1,64 +1,64 @@
 from helpers import *
 
 def calcNetworkAddress(ipAddress, subnetMask):
-	ip_address_bin = decIpToBin(ipAddress)
-	subnet_mask_bin = decIpToBin(subnetMask)
-	network_address_bin = ''
+	ipAddressBin = decIpToBin(ipAddress)
+	subnetMaskBin = decIpToBin(subnetMask)
+	networkAddressBin = ''
 
 	for x in range(0, 32):
-		network_address_bin += str(int(ip_address_bin[x]) * int(subnet_mask_bin[x]))
+		networkAddressBin += str(int(ipAddressBin[x]) * int(subnetMaskBin[x]))
 
-	return binIpToDec(network_address_bin)
+	return binIpToDec(networkAddressBin)
 
 
 def calcBroadcastAddress(networkAddress, subnetMask):
-	subnetmask_bin = decIpToBin(subnetMask)
-	subnetmask_reversed_bin = ''
+	subnetmaskBin = decIpToBin(subnetMask)
+	reversedSubnetMaskBin = ''
 
-	for x in range(0, len(subnetmask_bin)):
-		if int(subnetmask_bin[x]) == 1:
-			subnetmask_reversed_bin += '0'
+	for x in range(0, len(subnetmaskBin)):
+		if int(subnetmaskBin[x]) == 1:
+			reversedSubnetMaskBin += '0'
 		else:
-			subnetmask_reversed_bin += '1'
+			reversedSubnetMaskBin += '1'
 	
 
-	subnetmask_reversed_dec = binIpToDec(subnetmask_reversed_bin)
+	reversedSubnetMaskDec = binIpToDec(reversedSubnetMaskBin)
 
-	subnetmask_reversed_dec_arr = subnetmask_reversed_dec.split('.')
-	network_address_arr = networkAddress.split('.')
+	reversedSubnetMaskDec_arr = reversedSubnetMaskDec.split('.')
+	networkAddressArr = networkAddress.split('.')
 
-	broadcast_address_arr = []
+	broadcastAddressArr = []
 	for index in range(0, 4):
-		broadcast_address_arr.append(
-			str(int(subnetmask_reversed_dec_arr[index]) + int(network_address_arr[index]))
+		broadcastAddressArr.append(
+			str(int(reversedSubnetMaskDec_arr[index]) + int(networkAddressArr[index]))
 			)
 
-	return '.'.join(str(x) for x in broadcast_address_arr)
+	return '.'.join(str(x) for x in broadcastAddressArr)
 		
 
 def getMaximumHostsAmount(subnetMask):    
-	subnetmask_short = 0
-	subnetmask_bin = decIpToBin(subnetMask)
+	subnetMaskShort = 0
+	subnetMaskBin = decIpToBin(subnetMask)
 
-	for x in range(0, len(subnetmask_bin)):
-		if int(subnetmask_bin[x]) == 1:
-			subnetmask_short += 1
+	for x in range(0, len(subnetMaskBin)):
+		if int(subnetMaskBin[x]) == 1:
+			subnetMaskShort += 1
 
-	return pow(2, 32 - subnetmask_short) - 2
+	return pow(2, 32 - subnetMaskShort) - 2
 
 
 def getFirstHostIP(networkAddress):
-	network_address_arr = networkAddress.split('.')
-	network_address_arr[3] = str(int(network_address_arr[3]) + 1)
+	networkAddressArr = networkAddress.split('.')
+	networkAddressArr[3] = str(int(networkAddressArr[3]) + 1)
 
-	return '.'.join(str(x) for x in network_address_arr)
+	return '.'.join(str(x) for x in networkAddressArr)
 
 
 def getLastHostIP(broadcastAddress):
-	broadcast_address_arr = broadcastAddress.split('.')
-	broadcast_address_arr[3] = str(int(broadcast_address_arr[3]) - 1)
+	broadcastAddressArr = broadcastAddress.split('.')
+	broadcastAddressArr[3] = str(int(broadcastAddressArr[3]) - 1)
 
-	return '.'.join(str(x) for x in broadcast_address_arr)
+	return '.'.join(str(x) for x in broadcastAddressArr)
 
 
 def calculateAll(ipAddress, subnetMask):

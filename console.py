@@ -21,13 +21,13 @@ class ConsoleApplication:
 
     def calculateAndPrintResult(self):
 
-        print('''
+        print(f'''
 ------------------------------------------------------
-Adres sieci                            %s
-Adres rozgłoszeniowy                   %s
-Maksymalna liczba urządzeń             %d
-Adres IP pierwszego urządzenia         %s
-Adres IP ostatniego urządzenia         %s
+{str(getMessage('NETWORK_ADDRESS'))}                            %s
+{str(getMessage('BROADCAST_ADDRESS'))}                   %s
+{str(getMessage('MAXIMUM_HOSTS'))}             %d
+{str(getMessage('FIRST_HOST_IP'))}         %s
+{str(getMessage('LAST_HOST_IP'))}         %s
 ------------------------------------------------------
         ''' % (calculateAll(self.ipAddress, self.subnetMask)))
         

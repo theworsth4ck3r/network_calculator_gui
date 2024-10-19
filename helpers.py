@@ -4,15 +4,13 @@ from messages import getErrorMessage
 
 
 def isConsoleApplication():
-    __IS_CONSOLE_APPLICATION = False
-
     opts, args = getopt.getopt(sys.argv[1:], "c", ['console'])
 
     for opt, arg in opts:
         if opt in ('-c', '--console'):
-            __IS_CONSOLE_APPLICATION = True
+            return True
             
-    return __IS_CONSOLE_APPLICATION
+    return False
 
 
 def validateIpAddress(ipAddress):
